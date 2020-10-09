@@ -20,32 +20,32 @@ export class MatchManagementService {
   constructor(private http: HttpClient) { }
 
   postCreateMatch(config: MatchConfiguration) : Observable<String> {
-	  var serviceUrl = 'http://' + this.hostServer + ':' + this.hostPort + '/matches';
+	  var serviceUrl = 'http://' + this.hostServer +  '/matches';
 	  return this.http.post<String>(serviceUrl, config);
   }
 
   postMatchName(id: String, name: string) : Observable<String> {
 	  var serviceUrl = 'http://' + this.hostServer
-		+ ':' + this.hostPort + '/matches/'
+		+ '/matches/'
 		+ id;
 	  return this.http.post<String>(serviceUrl, name);
   }
 
   getOpenMatches() : Observable<Match[]> {
-	  var serviceUrl = 'http://' + this.hostServer + ':' + this.hostPort + '/matches';
+	  var serviceUrl = 'http://' + this.hostServer + '/matches';
 	  return this.http.get<Match[]>(serviceUrl);
   }
 
   postJoinMatch(matchId: String, name: String) : Observable<String> {
 	  var serviceUrl = 'http://' + this.hostServer
-		+ ':' + this.hostPort + '/matches/'
+		+ '/matches/'
 		+ matchId + '/join';
 	  return this.http.post<String>(serviceUrl, name);
   }
 
   getMatchState(matchId: string, playerId: string) : Observable<MatchState> {
 	var serviceUrl = 'http://' + this.hostServer
-		+ ':' + this.hostPort + '/matches/'
+		+ '/matches/'
 		+ matchId + '/state';
 	var params = new HttpParams().set('playerId', playerId);
 	return this.http.get<MatchState>(serviceUrl, {params});
@@ -53,7 +53,7 @@ export class MatchManagementService {
 
   getAvailableMoves(matchId: string, playerId: string) : Observable<Move[]> {
 	var serviceUrl = 'http://' + this.hostServer
-		+ ':' + this.hostPort + '/matches/'
+		+ '/matches/'
 		+ matchId + '/possiblemoves';
 	var params = new HttpParams().set('playerId', playerId);
 	return this.http.get<Move[]>(serviceUrl, {params});
@@ -61,14 +61,14 @@ export class MatchManagementService {
 
   getMoveHistory(matchId: string) : Observable<string[]> {
 	var serviceUrl = 'http://' + this.hostServer
-		+ ':' + this.hostPort + '/matches/'
+		+ '/matches/'
 		+ matchId + '/mrxhistory';
 	return this.http.get<string[]>(serviceUrl);
   }
 
   getSurfacingTurns(matchId: string) : Observable<number[]> {
 	var serviceUrl = 'http://' + this.hostServer
-		+ ':' + this.hostPort + '/matches/'
+		+ '/matches/'
 		+ matchId + '/surfacing';
 	return this.http.get<number[]>(serviceUrl);
   }

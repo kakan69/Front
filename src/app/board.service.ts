@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import {map} from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {DomSanitizer}from '@angular/platform-browser';
+import {DomSanitizer} from '@angular/platform-browser';
 
 import {Board} from './matchconfig/board';
 import {MatchConfiguration} from './matchconfig/match-configuration';
@@ -21,22 +21,22 @@ export class BoardService {
 			  private domSanitizer: DomSanitizer) { }
 
   getBoards() : Observable<Board[]> {
-	  var serviceUrl = 'http://' + this.hostServer + ':' + this.hostPort + '/boards';
+	  var serviceUrl = 'http://' + this.hostServer + '/boards';
 	  return this.http.get<Board[]>(serviceUrl);
   }
 
   getDefaultConfiguration(boardId: String) : Observable<MatchConfiguration> {
-	  var serviceUrl = 'http://' + this.hostServer + ':' + this.hostPort + '/config';
+	  var serviceUrl = 'http://' + this.hostServer + '/config';
 	  return this.http.get<MatchConfiguration>(serviceUrl);
   }
 
   getBoardImage() : Observable<Blob> {
-	  var serviceUrl = 'http://' + this.hostServer + ':' + this.hostPort + '/map';
+	  var serviceUrl = 'http://' + this.hostServer +  '/map';
 	  return this.http.get(serviceUrl, {responseType: 'blob'});
   }
 
   getLocation(node: number) : Observable<Location> {
-	  var serviceUrl = 'http://' + this.hostServer + ':' + this.hostPort + '/location/' + node;
+	  var serviceUrl = 'http://' + this.hostServer +  '/location/' + node;
 	  return this.http.get<Location>(serviceUrl);
   }
 }
